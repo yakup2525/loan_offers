@@ -1,0 +1,22 @@
+{
+    "searchLoan": {
+        "title": "İhtiyaç Kredisi",
+        "themeModeDark": "Dark",
+        "themeModeLight": "Light",
+        "month": "Ay",
+        "loanOffers": "Kredi Teklifleri"
+    },
+    "loanList": {
+        "title": "İhtiyaç Kredileri",
+        "offer": {
+            "details": "Detaylar",
+            "applyNow": "Hemen Başvur",
+            "monthlyInstallment": "Aylık Taksit",
+            "interestRate": "Faiz Oranı",
+            "totalAmount": "Toplam Tutar",
+            "loanType": "Kredi Tipi",
+            "loanAmount": "Kredi Tutarı",
+            "maturity": "Vade"
+        }
+    }
+}
