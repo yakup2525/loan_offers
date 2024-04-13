@@ -30,40 +30,52 @@ class _LoanListScreenState extends State<LoanListScreen> {
       appBar: CustomAppBar(
         title: LocaleKeys.loanList_title.tr(),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('₺${widget.loanModel.amount}'),
-                  const Text('|'),
-                  Text('₺${widget.loanModel.maturity}'),
-                ],
-              ),
-            ),
-            Expanded(
-              child: BlocBuilder<LoanCubit, AppState>(
-                builder: (context, state) {
-                  if (state is InitialState) {
-                    return const SizedBox();
-                  } else if (state is LoadingState) {
-                    return const AppLoading();
-                  } else if (state is SuccessState<OfferResponseModel>) {
-                    final list = state.param?.activeOffers;
-                    return _successBody(list);
-                  } else if (state is ErrorState) {
-                    return Center(child: Text(state.error.toString()));
-                  } else {
-                    return const SizedBox();
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
+      body: _body(),
+    );
+  }
+
+  Center _body() {
+    return Center(
+      child: Column(
+        children: [
+          _loanDetail(),
+          _bBuilder(),
+        ],
+      ),
+    );
+  }
+
+  Align _loanDetail() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('₺${widget.loanModel.amount}'),
+          const Text('|'),
+          Text('₺${widget.loanModel.maturity}'),
+        ],
+      ),
+    );
+  }
+
+  Expanded _bBuilder() {
+    return Expanded(
+      child: BlocBuilder<LoanCubit, AppState>(
+        builder: (context, state) {
+          if (state is InitialState) {
+            return const SizedBox();
+          } else if (state is LoadingState) {
+            return const AppLoading();
+          } else if (state is SuccessState<OfferResponseModel>) {
+            final list = state.param?.activeOffers;
+            return _successBody(list);
+          } else if (state is ErrorState) {
+            return Center(child: Text(state.error.toString()));
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }
